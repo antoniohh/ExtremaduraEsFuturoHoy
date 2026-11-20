@@ -313,6 +313,15 @@ async function cacheArticleImage(article: Article): Promise<Article> {
   }
 }
 
+async function hasExistingArticles(): Promise<boolean> {
+  try {
+    await access(path.join(DATA_DIR, "articles.json"));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function main() {
   await mkdir(DATA_DIR, { recursive: true });
   await mkdir(ARTICLE_MEDIA_DIR, { recursive: true });
@@ -321,10 +330,24 @@ async function main() {
   const articles: Article[] = [];
 
   console.log("Leyendo temática y autor de HOY…");
-  const [tematicaHtml, authorHtml] = await Promise.all([
-    fetchText(TEMATICA_URL),
-    fetchText(AUTHOR_URL),
-  ]);
+  let tematicaHtml = "";
+  let authorHtml = "";
+  try {
+    [tematicaHtml, authorHtml] = await Promise.all([
+      fetchText(TEMATICA_URL),
+      fetchText(AUTHOR_URL),
+    ]);
+  } catch (error) {
+    if (await hasExistingArticles()) {
+      console.warn(
+        `Aviso: no se pudo conectar con HOY (${
+          error instanceof Error ? error.message : error
+        }). Se conserva el articles.json anterior.`,
+      );
+      return;
+    }
+    throw error;
+  }
 
   const tematicaUrls = itemListUrls(tematicaHtml);
   const authorUrls = itemListUrls(authorHtml).filter(isProjectUrl);
@@ -370,8 +393,14 @@ async function main() {
     .map((article, index) => ({ ...article, featured: index < 3 }));
 
   if (uniqueArticles.length === 0) {
+    if (await hasExistingArticles()) {
+      console.warn(
+        "Aviso: no se ha podido extraer ningún artículo nuevo. Se conserva el articles.json anterior.",
+      );
+      return;
+    }
     throw new Error(
-      "No se ha podido extraer ningún artículo. Se conserva el articles.json anterior.",
+      "No se ha podido extraer ningún artículo y no existe un articles.json previo.",
     );
   }
 

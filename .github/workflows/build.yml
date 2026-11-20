@@ -14,6 +14,7 @@ on:
       - "scripts/**"
       - "package.json"
       - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
       - "astro.config.mjs"
       - "tsconfig.json"
       - ".github/workflows/build.yml"
@@ -64,6 +65,9 @@ jobs:
           retention-days: 14
 
       - name: Deploy to IONOS
+        if: ${{ env.FTP_SERVER != '' }}
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
