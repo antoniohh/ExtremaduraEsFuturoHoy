@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "./Breadcrumbs.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  updated?: string;
+}
+
+const {
+  title,
+  description,
+  updated = "19 de noviembre de 2026",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <div class="mx-auto max-w-[900px] px-5 py-8 lg:px-8 lg:py-12">
+    <Breadcrumbs
+      items={[
+        { name: "Inicio", href: "/" },
+        { name: title, href: currentPath },
+      ]}
+    />
+
+    <header class="mt-8 border-b-2 border-ink pb-8">
+      <p class="label text-muted">Borrador pendiente de revisión legal</p>
+      <h1 class="display mt-3 text-[clamp(2.8rem,7vw,5.5rem)]">{title}</h1>
+      <p class="label mt-4 text-muted">Última actualización: {updated}</p>
+    </header>
+
+    <div class="legal-prose py-8">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Runtime artifacts from Impeccable (the committed context files stay)
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/live/

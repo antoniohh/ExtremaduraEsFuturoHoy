@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../lib/site";
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contacta con Extremadura es Futuro HOY para propuestas, correcciones, entrevistas o colaboraciones."
+>
+  <div class="mx-auto max-w-[1280px] px-5 py-8 lg:px-8 lg:py-12">
+    <Breadcrumbs
+      items={[
+        { name: "Inicio", href: "/" },
+        { name: "Contacto", href: "/contacto/" },
+      ]}
+    />
+
+    <header class="mt-8 border-b-2 border-ink pb-10">
+      <h1 class="display text-[clamp(3.2rem,8vw,7rem)]">Contacto</h1>
+      <p class="serif mt-5 max-w-2xl text-xl leading-snug text-ink/75">
+        ¿Tienes una historia, una corrección o una propuesta de colaboración?
+        Escríbenos.
+      </p>
+    </header>
+
+    <div class="grid gap-8 py-12 lg:grid-cols-2">
+      <section class="border-2 border-ink bg-lemon p-6 lg:p-8">
+        <p class="label">Protagonistas y proyectos</p>
+        <h2 class="display mt-3 text-4xl">Cuéntanos tu historia</h2>
+        <p class="serif mt-4 text-lg leading-relaxed text-ink/75">
+          Si tienes un proyecto, una empresa o una trayectoria que encaje con el
+          espíritu del proyecto, escríbenos por Instagram. Leemos todos los
+          mensajes, aunque no siempre podamos responder el mismo día.
+        </p>
+        <a
+          href={SITE.social.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="label mt-6 inline-flex items-center gap-3 border-2 border-ink bg-ink px-4 py-3 text-paper transition-colors hover:bg-green"
+        >
+          Escribir por Instagram
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <section class="border-2 border-ink p-6 lg:p-8">
+        <p class="label">Instituciones y medios</p>
+        <h2 class="display mt-3 text-4xl">Prensa y colaboraciones</h2>
+        <p class="serif mt-4 text-lg leading-relaxed text-ink/75">
+          Para propuestas institucionales, acreditaciones, cesión de imágenes o
+          colaboraciones con Diario HOY, utiliza el canal de contacto del diario.
+        </p>
+        <a
+          href="https://areapersonal.hoy.es/gestion/contacto.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="label mt-6 inline-flex items-center gap-3 border-2 border-ink px-4 py-3 transition-colors hover:bg-lemon"
+        >
+          Contacto de HOY
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </div>
+
+    <div class="border-t border-line pt-6">
+      <p class="max-w-2xl text-sm leading-relaxed text-muted">
+        El formulario de contacto se activará en la siguiente fase. Mientras
+        tanto, estos son los canales oficiales del proyecto.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

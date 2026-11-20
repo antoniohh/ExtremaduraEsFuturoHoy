@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { PARTNERS } from "../lib/site";
+---
+
+<BaseLayout
+  title="Colaboradores"
+  description="Instituciones y entidades que impulsan Extremadura es Futuro HOY: UEx, Consejo Social, Fundación MAPFRE, Junta, Alianza Extremadura y Diario HOY."
+>
+  <div class="mx-auto max-w-[1280px] px-5 py-8 lg:px-8 lg:py-12">
+    <Breadcrumbs
+      items={[
+        { name: "Inicio", href: "/" },
+        { name: "Colaboradores", href: "/colaboradores/" },
+      ]}
+    />
+
+    <header class="mt-8 border-b-2 border-ink pb-10">
+      <h1 class="display text-[clamp(3.2rem,8vw,7rem)]">Colaboradores</h1>
+      <p class="serif mt-5 max-w-2xl text-xl leading-snug text-ink/75">
+        Extremadura es Futuro HOY no se entiende sin las instituciones que lo
+        impulsan y lo acompañan.
+      </p>
+    </header>
+
+    <div class="grid gap-6 py-12 lg:grid-cols-2">
+      {PARTNERS.map((partner) => (
+        <a
+          href={partner.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex min-h-[220px] flex-col justify-between border-2 border-ink bg-white/40 p-6 transition-colors hover:bg-lemon"
+        >
+          <div class="flex h-20 items-center">
+            <img
+              src={partner.image}
+              alt={partner.name}
+              class="max-h-16 w-auto max-w-[220px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="mt-8 flex items-end justify-between gap-4 border-t border-ink/20 pt-4">
+            <h2 class="display text-3xl">{partner.name}</h2>
+            <span class="label shrink-0">Web ↗</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="border-t border-line pt-6">
+      <p class="max-w-2xl text-sm leading-relaxed text-muted">
+        ¿Representas a una institución, empresa o medio y quieres colaborar?
+        Escríbenos desde la página de contacto.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

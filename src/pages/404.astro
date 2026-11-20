@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArrowLink from "../components/ArrowLink.astro";
+---
+
+<BaseLayout
+  title="Página no encontrada"
+  description="La página que buscas no existe o ha cambiado de dirección."
+  noindex
+  canonicalPath="/404.html"
+>
+  <section class="mx-auto flex min-h-[60vh] max-w-[1280px] flex-col justify-center px-5 py-16 lg:px-8">
+    <p class="display text-[clamp(7rem,22vw,18rem)] leading-[0.8] text-lemon [-webkit-text-stroke:2px_var(--color-ink)]">
+      404
+    </p>
+    <div class="mt-6 max-w-2xl">
+      <h1 class="display text-4xl lg:text-6xl">Esta página no existe</h1>
+      <p class="serif mt-4 text-lg leading-snug text-ink/75 lg:text-xl">
+        Puede que el enlace esté mal escrito o que la pieza haya cambiado de
+        sitio. Prueba desde la portada o desde las secciones.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-6">
+        <ArrowLink href="/" label="Volver a la portada" />
+        <ArrowLink href="/entrevistas/" label="Ver entrevistas" />
+        <ArrowLink href="/encuentros/" label="Ver encuentros" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,246 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LeadStory from "../components/LeadStory.astro";
+import NewsRow from "../components/NewsRow.astro";
+import InterviewCard from "../components/InterviewCard.astro";
+import EventPoster from "../components/EventPoster.astro";
+import SocialTile from "../components/SocialTile.astro";
+import VideoCard from "../components/VideoCard.astro";
+import ArrowLink from "../components/ArrowLink.astro";
+import {
+  articles,
+  interviews,
+  latestArticles,
+  social,
+  upcomingEvent,
+  youtube,
+} from "../lib/data";
+import { formatTime } from "../lib/format";
+import { collectionSchema } from "../lib/seo";
+import { KIND_COLOR, KIND_LABEL } from "../lib/site";
+
+const lead = articles[0];
+const river = articles.slice(1, 10);
+const voices = interviews.slice(0, 3);
+const featuredSocial = social.filter((post) => post.featured).slice(0, 4);
+const featuredVideos = youtube.slice(0, 2);
+
+const jsonLd = [
+  collectionSchema(
+    "Portada",
+    "Últimas noticias, entrevistas y encuentros de Extremadura es Futuro HOY.",
+    "/",
+    articles.slice(0, 10),
+  ),
+];
+---
+
+<BaseLayout
+  title="Extremadura es Futuro HOY — Talento y emprendimiento extremeño"
+  description="Noticias, entrevistas y encuentros sobre el talento y el emprendimiento extremeño. Un proyecto de Diario HOY y la Universidad de Extremadura."
+  jsonLd={jsonLd}
+>
+  <section class="mx-auto max-w-[1280px] px-5 pt-8 lg:px-8 lg:pt-12">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-7">
+        <LeadStory article={lead} />
+      </div>
+
+      <aside class="lg:col-span-5">
+        <div class="flex items-end justify-between border-b-2 border-ink pb-2">
+          <h2 class="display text-3xl">Lo último</h2>
+          <a href="/noticias/" class="label u-link text-muted hover:text-ink">Ver todo</a>
+        </div>
+
+        <ol>
+          {latestArticles.map((article) => (
+            <li class="border-b border-line">
+              <a
+                href={article.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group grid grid-cols-[1fr_auto] gap-4 py-4"
+              >
+                <div class="min-w-0">
+                  <p class="label flex items-center gap-1.5 text-ink">
+                    <span class:list={["size-1.5 rounded-full", KIND_COLOR[article.kind]]} aria-hidden="true"></span>
+                    {KIND_LABEL[article.kind]}
+                  </p>
+                  <h3 class="u-link display mt-1.5 text-[1.35rem] leading-[0.95] transition-colors group-hover:text-green">
+                    {article.title}
+                  </h3>
+                </div>
+                <time class="label pt-0.5 text-muted" datetime={article.publishedAt}>
+                  {formatTime(article.publishedAt)}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        {upcomingEvent && (
+          <div class="mt-8">
+            <EventPoster event={upcomingEvent} variant="compact" />
+          </div>
+        )}
+
+        <div class="mt-6 border-t border-line pt-4">
+          <p class="serif text-sm leading-relaxed text-ink/65">
+            Un proyecto de Diario HOY, la Universidad de Extremadura y su
+            Consejo Social.
+          </p>
+          <a href="/sobre-el-proyecto/" class="label u-link mt-2 inline-flex items-center gap-2 hover:text-green">
+            Conocer el proyecto
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1280px] px-5 py-14 lg:px-8 lg:py-20">
+    <div class="flex flex-col gap-5 border-b-2 border-ink pb-4 md:flex-row md:items-end md:justify-between">
+      <h2 class="display text-[clamp(3rem,6vw,5.5rem)]">El río de noticias</h2>
+      <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrar noticias">
+        <a
+          href="/noticias/"
+          data-filter="all"
+          aria-current="true"
+          class="label rounded-full border border-ink px-4 py-2 transition-colors hover:bg-ink hover:text-paper"
+        >
+          Todas
+        </a>
+        <a
+          href="/entrevistas/"
+          data-filter="entrevista"
+          class="label rounded-full border border-ink px-4 py-2 transition-colors hover:bg-ink hover:text-paper"
+        >
+          Entrevistas
+        </a>
+        <a
+          href="/encuentros/"
+          data-filter="encuentro"
+          class="label rounded-full border border-ink px-4 py-2 transition-colors hover:bg-ink hover:text-paper"
+        >
+          Encuentros
+        </a>
+      </div>
+    </div>
+
+    <div class="grid gap-x-10 md:grid-cols-2">
+      {river.map((article) => (
+        <NewsRow article={article} />
+      ))}
+    </div>
+
+    <div class="mt-8">
+      <ArrowLink href="/noticias/" label="Ver todas las noticias" />
+    </div>
+  </section>
+
+  <section class="bg-lemon py-14 lg:py-20">
+    <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+      <div class="flex flex-col gap-4 border-b-2 border-ink pb-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 class="display text-[clamp(3.2rem,7vw,6.5rem)]">Voces</h2>
+          <p class="script mt-1 text-2xl text-ink/70 lg:text-3xl">
+            Personas que están construyendo el presente.
+          </p>
+        </div>
+        <a href="/entrevistas/" class="label u-link hover-arrow inline-flex items-center gap-2 text-ink hover:text-green">
+          Todas las entrevistas
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {voices.map((article) => (
+          <InterviewCard article={article} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1280px] px-5 py-14 lg:px-8 lg:py-20">
+    <div class="flex flex-col gap-4 border-b-2 border-ink pb-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <h2 class="display text-[clamp(3rem,6vw,5.5rem)]">En redes</h2>
+        <p class="serif mt-1 text-lg text-ink/70">Lo que se mueve en Instagram, YouTube y TikTok.</p>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <a href="/instagram/" class="label u-link">Instagram</a>
+        <a href="/youtube/" class="label u-link">YouTube</a>
+        <a href="/tiktok/" class="label u-link">TikTok</a>
+      </div>
+    </div>
+
+    <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      {featuredSocial.map((post) => (
+        <SocialTile post={post} />
+      ))}
+    </div>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      {featuredVideos.map((video, index) => (
+        <VideoCard video={video} featured={index === 0} />
+      ))}
+      <a
+        href="/tiktok/"
+        class="group flex min-h-[220px] flex-col justify-between border-2 border-ink bg-cyan p-6 text-ink transition-colors hover:bg-lemon"
+      >
+        <span class="label">TikTok</span>
+        <span class="display text-[clamp(2.2rem,4vw,3.6rem)]">Clips verticales</span>
+        <span class="label inline-flex items-center gap-2">
+          Ver perfil
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="border-y border-ink/15 bg-paper">
+    <div class="mx-auto grid max-w-[1280px] gap-8 px-5 py-12 lg:grid-cols-12 lg:items-center lg:px-8 lg:py-16">
+      <div class="lg:col-span-6">
+        <h2 class="display text-[clamp(2.8rem,5vw,4.5rem)]">Archivo</h2>
+        <p class="serif mt-3 max-w-xl text-lg leading-snug text-ink/70">
+          Cinco años de historias, entrevistas y encuentros. El archivo del proyecto, ordenado por edición.
+        </p>
+        <div class="mt-6">
+          <ArrowLink href="/ediciones/" label="Explorar el archivo" />
+        </div>
+      </div>
+      <div class="lg:col-span-6">
+        <div class="grid grid-cols-3 gap-2 sm:grid-cols-6">
+          {["2026", "2025", "2024", "2023", "2022", "2021"].map((year) => (
+            <span class="display flex aspect-square items-center justify-center border border-ink/20 text-2xl text-ink/60">
+              {year}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const filterLinks = document.querySelectorAll<HTMLAnchorElement>("[data-filter]");
+  const newsRows = document.querySelectorAll<HTMLElement>("[data-kind]");
+
+  filterLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const filter = link.dataset.filter;
+      if (!filter) return;
+
+      event.preventDefault();
+
+      newsRows.forEach((row) => {
+        row.hidden = filter !== "all" && row.dataset.kind !== filter;
+      });
+
+      filterLinks.forEach((item) => {
+        if (item === link) item.setAttribute("aria-current", "true");
+        else item.removeAttribute("aria-current");
+      });
+    });
+  });
+</script>

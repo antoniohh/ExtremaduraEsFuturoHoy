@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialHeader from "../components/SocialHeader.astro";
+import VideoCard from "../components/VideoCard.astro";
+import ArrowLink from "../components/ArrowLink.astro";
+import { youtube } from "../lib/data";
+import { videoSchema } from "../lib/seo";
+import { SITE } from "../lib/site";
+
+const [featured, ...rest] = youtube;
+const jsonLd = youtube.map((video) => videoSchema(video));
+---
+
+<BaseLayout
+  title="YouTube de Extremadura es Futuro HOY"
+  description="Entrevistas y encuentros en vídeo de Extremadura es Futuro HOY. Historias de talento, empresa y futuro contadas desde Extremadura."
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SocialHeader
+      platform="YouTube"
+      handle="@ExtremaduraEsFuturo"
+      description="Entrevistas completas y encuentros grabados en vídeo. La conversación entera, sin cortes, con quien está construyendo futuro desde Extremadura."
+      href={SITE.social.youtube}
+      accent="bg-cyan text-ink"
+      note={`${youtube.length} vídeos del canal, todos disponibles en esta página. La reproducción se abre en YouTube para no cargar scripts de terceros.`}
+    />
+  </div>
+
+  <section class="mx-auto max-w-[1280px] px-5 py-10 lg:px-8 lg:py-14">
+    {featured ? (
+      <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <VideoCard video={featured} featured priority headingLevel="h2" />
+        </div>
+        <div class="lg:col-span-4 lg:pb-4">
+          <p class="label text-muted">Último vídeo</p>
+          <p class="serif mt-3 text-lg leading-snug text-ink/75">
+            Cada semana, una conversación nueva. Si quieres ver el resto,
+            suscríbete al canal o explora la cuadrícula.
+          </p>
+          <div class="mt-5">
+            <ArrowLink href={SITE.social.youtube} label="Suscribirse" external />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="border-2 border-ink bg-lemon p-8">
+        <p class="display text-4xl">Canal en preparación</p>
+        <p class="serif mt-3 max-w-xl text-lg">
+          El RSS del canal no ha devuelto vídeos en la última actualización.
+          Puedes verlos directamente en YouTube.
+        </p>
+        <div class="mt-6">
+          <ArrowLink href={SITE.social.youtube} label="Abrir YouTube" external />
+        </div>
+      </div>
+    )}
+
+    {rest.length > 0 && (
+      <div class="mt-12 border-t-2 border-ink pt-6">
+        <h2 class="display text-4xl">Más vídeos</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.map((video) => (
+            <VideoCard video={video} />
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+</BaseLayout>

@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-11-19T23:40:33.902Z",
+  "sources": {
+    "tematica": {
+      "url": "https://www.hoy.es/tematicas/extremadura-es-futuro-hoy.html",
+      "count": 16
+    },
+    "autor": {
+      "url": "https://www.hoy.es/autor/daniel-vaquerizo-7580.html",
+      "count": 13
+    }
+  },
+  "total": 16,
+  "errors": []
+}

@@ -1,0 +1,42 @@
+{
+  "name": "extremadura-futuro-hoy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "tsx scripts/build-htaccess.ts && astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "sync": "tsx scripts/sync.ts",
+    "import:archive": "tsx scripts/import-archive.ts",
+    "import:social": "tsx scripts/import-social.ts",
+    "import:tiktok": "tsx scripts/import-tiktok.ts",
+    "validate": "tsx scripts/validate.ts",
+    "check": "astro check"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.6",
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource/bebas-neue": "^5.3.0",
+    "@fontsource/bodoni-moda": "^5.3.0",
+    "@fontsource/caveat": "^5.3.0",
+    "@lucide/astro": "^1.75.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.13",
+    "cheerio": "^1.2.0",
+    "date-fns": "^4.4.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^26.6.6",
+    "pagefind": "^1.6.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  }
+}

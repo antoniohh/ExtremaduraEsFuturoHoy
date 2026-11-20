@@ -1,0 +1,68 @@
+---
+import type { Article } from "../lib/schema";
+import { formatDate, formatTime, isToday } from "../lib/format";
+import { articleSrcSet } from "../lib/media";
+import { isExternalHref } from "../lib/url";
+import TypeChip from "./TypeChip.astro";
+import ArticleMeta from "./ArticleMeta.astro";
+import ArrowLink from "./ArrowLink.astro";
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+const external = isExternalHref(article.href);
+const readLabel = article.source === "hoy" ? "Leer en HOY" : "Leer la pieza";
+const dateLabel = isToday(article.publishedAt)
+  ? `${formatTime(article.publishedAt)} · Hoy`
+  : formatDate(article.publishedAt);
+---
+
+<article class="group">
+  <a
+    href={article.href}
+    class="block"
+    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+  >
+    <div class="relative aspect-[3/2] overflow-hidden bg-line">
+      <img
+        src={article.image}
+        srcset={articleSrcSet(article.image)}
+        sizes="(min-width: 1024px) 55vw, 100vw"
+        alt={article.title}
+        width={article.imageWidth}
+        height={article.imageHeight}
+        class="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute left-4 top-4">
+        <TypeChip article={article} />
+      </div>
+      <span class="sticker absolute right-4 top-4">
+        {dateLabel}
+      </span>
+    </div>
+  </a>
+
+  <div class="mt-5 bg-lemon px-4 py-4 lg:px-5 lg:py-5">
+    <h1 class="display text-[clamp(2.8rem,5.6vw,5.2rem)]">
+      <a
+        href={article.href}
+        class="u-link"
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {article.title}
+      </a>
+    </h1>
+  </div>
+
+    <p class="serif mt-4 max-w-2xl text-lg leading-snug text-ink/75 lg:text-xl">
+      {article.excerpt}
+    </p>
+    <div class="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
+      <ArticleMeta article={article} />
+      <ArrowLink href={article.href} label={readLabel} external={external} />
+    </div>
+</article>

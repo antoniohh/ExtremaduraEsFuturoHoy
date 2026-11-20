@@ -1,0 +1,46 @@
+---
+import type { YouTubeVideo } from "../lib/schema";
+import { formatDate } from "../lib/format";
+
+interface Props {
+  video: YouTubeVideo;
+  featured?: boolean;
+  priority?: boolean;
+  headingLevel?: "h2" | "h3";
+}
+
+const {
+  video,
+  featured = false,
+  priority = false,
+  headingLevel = "h3",
+} = Astro.props;
+const Heading = headingLevel;
+---
+
+<a
+  href={video.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block"
+>
+  <div class="relative aspect-video overflow-hidden bg-ink">
+    <img
+      src={video.thumbnail}
+      alt={video.title}
+      class="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+      loading={priority ? "eager" : "lazy"}
+    />
+    <span class="absolute inset-0 flex items-center justify-center">
+      <span class="flex size-14 items-center justify-center rounded-full border-2 border-ink bg-lemon transition-transform duration-300 group-hover:scale-110">
+        <span class="ml-1 block size-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-ink"></span>
+      </span>
+    </span>
+    <span class="label absolute left-3 top-3 bg-ink px-2 py-1 text-paper">YouTube</span>
+  </div>
+
+  <Heading class:list={["display mt-3 u-link", featured ? "text-4xl lg:text-5xl" : "text-2xl lg:text-3xl"]}>
+    {video.title}
+  </Heading>
+  <p class="label mt-2 text-muted">{formatDate(video.publishedAt)}</p>
+</a>

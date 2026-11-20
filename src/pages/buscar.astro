@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<BaseLayout
+  title="Buscar"
+  description="Busca noticias, entrevistas, encuentros y protagonistas de Extremadura es Futuro HOY."
+  noindex
+>
+  <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SectionHeader
+      title="Buscar"
+      description="Encuentra una entrevista, un encuentro, una empresa o un protagonista. El índice se genera en cada publicación del sitio."
+    />
+  </div>
+
+  <section class="mx-auto max-w-[900px] px-5 py-10 lg:px-8 lg:py-14" data-pagefind-ignore>
+    <div id="search"></div>
+    <noscript>
+      <p class="mt-6 border border-line bg-white/60 p-5 text-sm text-muted">
+        La búsqueda necesita JavaScript. Puedes navegar por las secciones desde
+        el menú principal.
+      </p>
+    </noscript>
+  </section>
+
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", function () {
+      if (!window.PagefindUI) return;
+      new window.PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: "Buscar una historia, persona o empresa…",
+          clear_search: "Borrar",
+          load_more: "Ver más resultados",
+          search_label: "Buscar en este sitio",
+          filters: "Filtros",
+          zero_results: "No hay resultados para [SEARCH_TERM]",
+          many_results: "[COUNT] resultados para [SEARCH_TERM]",
+          one_result: "1 resultado para [SEARCH_TERM]",
+        },
+      });
+
+      const query = new URLSearchParams(window.location.search).get("q");
+      if (query) {
+        const input = document.querySelector("#search input");
+        if (input) {
+          input.value = query;
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      }
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import NewsRow from "../../components/NewsRow.astro";
+import ArrowLink from "../../components/ArrowLink.astro";
+import { articles } from "../../lib/data";
+import { SITE } from "../../lib/site";
+
+const latest = articles.slice(0, 5);
+const years = [...new Set(articles.map((article) => new Date(article.publishedAt).getFullYear()))]
+  .sort((a, b) => b - a)
+  .map((year) => ({
+    year,
+    count: articles.filter(
+      (article) => new Date(article.publishedAt).getFullYear() === year,
+    ).length,
+  }));
+---
+
+<BaseLayout
+  title="Ediciones y archivo"
+  description="Archivo completo de Extremadura es Futuro HOY: entrevistas, reportajes y encuentros de 2021 a 2026, organizados por edición."
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SectionHeader
+      title="Archivo"
+      description="Seis años de historias sobre talento, empresa y territorio. Todo el archivo original del proyecto, más las piezas publicadas en HOY, ordenado por año."
+      count={articles.length}
+      countLabel="piezas"
+      actionHref={SITE.hoy.tematica}
+      actionLabel="Ver en HOY"
+    />
+  </div>
+
+  <div class="mx-auto max-w-[1280px] px-5 py-10 lg:px-8 lg:py-14">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      {years.map((item) => (
+        <a
+          href={`/noticias/#year-${item.year}`}
+          class="group flex aspect-[4/3] flex-col justify-between border-2 border-ink p-4 transition-colors hover:bg-lemon"
+        >
+          <span class="label text-muted">Edición</span>
+          <span class="display text-4xl">{item.year}</span>
+          <span class="label text-muted">{item.count} piezas</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-14 border-t-2 border-ink pt-6">
+      <div class="flex items-end justify-between">
+        <h2 class="display text-4xl lg:text-5xl">Lo más reciente</h2>
+        <span class="label text-muted">2026</span>
+      </div>
+      <div class="mt-2 grid gap-x-10 md:grid-cols-2">
+        {latest.map((article) => (
+          <NewsRow article={article} />
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-10 border border-line bg-white/50 p-6">
+      <p class="label text-muted">Archivo completo</p>
+      <p class="serif mt-2 max-w-2xl text-lg leading-relaxed text-ink/70">
+        Las 183 piezas de 2021–2025 se han recuperado de la web original y tienen
+        ficha propia. Las de 2026 enlazan a su publicación en HOY. No falta
+        ninguna: si echas algo en falta, escríbenos.
+      </p>
+      <div class="mt-5">
+        <ArrowLink href="/noticias/" label="Ver todas las noticias" />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

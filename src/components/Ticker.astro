@@ -1,0 +1,40 @@
+---
+import { upcomingEvent } from "../lib/data";
+import { formatEventDate } from "../lib/format";
+
+const eventText = upcomingEvent
+  ? `Próximo encuentro · ${formatEventDate(upcomingEvent.date)} · ${upcomingEvent.city} · ${upcomingEvent.title}`
+  : "Próximo encuentro · muy pronto";
+
+const items = [
+  eventText,
+  "Asistencia libre hasta completar aforo",
+  "Entrevistas",
+  "Encuentros",
+  "Talento extremeño",
+  "Extremadura no solo tiene futuro: tiene presente",
+];
+---
+
+<div class="ticker overflow-hidden border-y border-ink bg-ink py-2.5 text-paper">
+  <p class="sr-only">{items.join(". ")}</p>
+  <div class="ticker-track" aria-hidden="true">
+    {[0, 1].map(() => (
+      <div class="flex shrink-0 items-center">
+        {items.map((item, index) => (
+          <span class="flex items-center whitespace-nowrap">
+            <span
+              class:list={[
+                "label",
+                index === 0 ? "text-lemon" : "text-paper/90",
+              ]}
+            >
+              {item}
+            </span>
+            <span class="mx-5 inline-block size-1.5 rotate-45 bg-gold" />
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>

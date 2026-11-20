@@ -1,0 +1,22 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+interface Props {
+  items: Array<{ name: string; href: string }>;
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Migas de pan" class="label flex flex-wrap items-center gap-2 text-muted">
+  {items.map((item, index) => (
+    <span class="contents">
+      {index > 0 && <ChevronRight size={11} stroke-width={2} aria-hidden="true" />}
+      {index === items.length - 1 ? (
+        <span aria-current="page" class="text-ink">{item.name}</span>
+      ) : (
+        <a href={item.href} class="u-link hover:text-ink">{item.name}</a>
+      )}
+    </span>
+  ))}
+</nav>

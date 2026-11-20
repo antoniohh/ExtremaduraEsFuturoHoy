@@ -1,0 +1,139 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import EventPoster from "../../components/EventPoster.astro";
+import NewsRow from "../../components/NewsRow.astro";
+import ArrowLink from "../../components/ArrowLink.astro";
+import type { Article } from "../../lib/schema";
+import { encounters, pastEvents, upcomingEvent } from "../../lib/data";
+import { eventSchema } from "../../lib/seo";
+import { formatEventDate } from "../../lib/format";
+import { SITE } from "../../lib/site";
+
+const archiveEncounters = encounters.filter(
+  (article) => !article.title.toLowerCase().includes("productora the glow"),
+);
+
+const listing = archiveEncounters.flatMap((article, index) => {
+  const year = new Date(article.publishedAt).getFullYear();
+  const previousYear =
+    index > 0
+      ? new Date(archiveEncounters[index - 1].publishedAt).getFullYear()
+      : null;
+  const items: Array<{ type: "year"; year: number } | { type: "article"; article: Article }> = [];
+
+  if (year !== previousYear) items.push({ type: "year", year });
+  items.push({ type: "article", article });
+
+  return items;
+});
+
+const jsonLd = upcomingEvent ? [eventSchema(upcomingEvent)] : [];
+---
+
+<BaseLayout
+  title="Encuentros de Extremadura es Futuro"
+  description="Encuentros, charlas y coloquios de Extremadura es Futuro HOY con protagonistas del talento y la empresa extremeña. Próximas citas y crónicas."
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SectionHeader
+      title="Encuentros"
+      description="Charlas y coloquios con personas que están construyendo futuro desde Extremadura. Presenciales, abiertos y con todo el contexto: ponentes, crónica, fotos y vídeo."
+      count={archiveEncounters.length + pastEvents.length + (upcomingEvent ? 1 : 0)}
+      countLabel="citas"
+      actionHref={SITE.hoy.tematica}
+      actionLabel="Ver en HOY"
+    />
+
+    {upcomingEvent ? (
+      <div class="py-10 lg:py-14">
+        <EventPoster event={upcomingEvent} variant="hero" />
+      </div>
+    ) : (
+      <div class="my-10 border-2 border-ink bg-lemon p-8">
+        <p class="display text-4xl">Próximamente</p>
+        <p class="serif mt-3 max-w-xl text-lg">
+          Estamos preparando la siguiente cita. Mientras tanto, puedes ver los
+          encuentros anteriores.
+        </p>
+      </div>
+    )}
+  </div>
+
+  <section class="mx-auto max-w-[1280px] px-5 pb-16 lg:px-8 lg:pb-24">
+    {pastEvents.length > 0 && (
+      <>
+        <div class="border-t-2 border-ink pt-6">
+          <h2 class="display text-4xl lg:text-5xl">Encuentros recientes</h2>
+        </div>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-2">
+          {pastEvents.map((event) => (
+            <article class="grid border-2 border-ink bg-paper sm:grid-cols-[180px_1fr]">
+              <img
+                src={event.image}
+                alt={`Cartel de ${event.title}`}
+                class="h-full min-h-[220px] w-full object-cover"
+                loading="lazy"
+              />
+              <div class="flex flex-col justify-between p-5">
+                <div>
+                  <p class="label text-muted">{formatEventDate(event.date)} · {event.city}</p>
+                  <h3 class="display mt-2 text-3xl">{event.title}</h3>
+                  <p class="serif mt-2 line-clamp-2 text-sm leading-snug text-ink/70">
+                    {event.description}
+                  </p>
+                </div>
+                <a
+                  href={`/encuentros/${event.slug}/`}
+                  class="label u-link mt-5 inline-flex items-center gap-2 hover:text-green"
+                >
+                  Ver crónica
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </>
+    )}
+
+    <div class="mt-14 border-t-2 border-ink pt-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 class="display text-4xl lg:text-5xl">Archivo de encuentros</h2>
+        <span class="label text-muted">{archiveEncounters.length} crónicas</span>
+      </div>
+      <p class="serif mt-3 max-w-2xl text-lg leading-snug text-ink/70">
+        Todas las citas del proyecto desde 2021, recuperadas de la web original.
+      </p>
+    </div>
+
+    {archiveEncounters.length > 0 ? (
+      <div class="grid gap-x-10 md:grid-cols-2">
+        {listing.map((item) =>
+          item.type === "year" ? (
+            <div
+              class="col-span-full mt-10 border-b-2 border-ink pb-2 first:mt-0"
+              id={`year-${item.year}`}
+            >
+              <h2 class="display text-5xl">{item.year}</h2>
+            </div>
+          ) : (
+            <NewsRow article={item.article} />
+          ),
+        )}
+      </div>
+    ) : (
+      <div class="mt-8 border border-line bg-white/50 p-8">
+        <p class="serif text-xl text-ink/70">
+          Todavía no hay encuentros publicados. Vuelve pronto.
+        </p>
+      </div>
+    )}
+
+    <div class="mt-10">
+      <ArrowLink href={SITE.hoy.tematica} label="Ver todas las noticias en HOY" external />
+    </div>
+  </section>
+</BaseLayout>

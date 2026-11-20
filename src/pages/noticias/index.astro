@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import type { Article } from "../../lib/schema";
+import NewsRow from "../../components/NewsRow.astro";
+import { articles } from "../../lib/data";
+import { collectionSchema } from "../../lib/seo";
+import { SITE } from "../../lib/site";
+
+const jsonLd = [
+  collectionSchema(
+    "Noticias",
+    "Todas las noticias, entrevistas y encuentros de Extremadura es Futuro HOY.",
+    "/noticias/",
+    articles,
+  ),
+];
+
+const listing = articles.flatMap((article, index) => {
+  const year = new Date(article.publishedAt).getFullYear();
+  const previousYear =
+    index > 0 ? new Date(articles[index - 1].publishedAt).getFullYear() : null;
+  const items: Array<{ type: "year"; year: number } | { type: "article"; article: Article }> = [];
+
+  if (year !== previousYear) items.push({ type: "year", year });
+  items.push({ type: "article", article });
+
+  return items;
+});
+---
+
+<BaseLayout
+  title="Noticias de Extremadura es Futuro HOY"
+  description="Todas las noticias, entrevistas y encuentros de Extremadura es Futuro HOY. Ordenadas por fecha y con enlace a la pieza original de HOY."
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SectionHeader
+      title="Noticias"
+      description="Todo lo que se ha publicado en el proyecto: entrevistas, encuentros y reportajes. Cada tarjeta enlaza a la pieza original en HOY o a su ficha de archivo."
+      count={articles.length}
+      countLabel="piezas"
+      actionHref={SITE.hoy.tematica}
+      actionLabel="Ver en HOY"
+    />
+  </div>
+
+  <section class="mx-auto max-w-[1280px] px-5 py-8 lg:px-8 lg:py-12">
+    <div class="flex flex-wrap gap-2 border-b border-line pb-5" role="group" aria-label="Secciones">
+      <a
+        href="/noticias/"
+        aria-current="page"
+        class="label rounded-full bg-ink px-4 py-2 text-paper"
+      >
+        Todas
+      </a>
+      <a
+        href="/entrevistas/"
+        class="label rounded-full border border-ink px-4 py-2 transition-colors hover:bg-ink hover:text-paper"
+      >
+        Entrevistas
+      </a>
+      <a
+        href="/encuentros/"
+        class="label rounded-full border border-ink px-4 py-2 transition-colors hover:bg-ink hover:text-paper"
+      >
+        Encuentros
+      </a>
+    </div>
+
+    <div class="grid gap-x-10 md:grid-cols-2">
+      {listing.map((item) =>
+        item.type === "year" ? (
+          <div
+            class="col-span-full mt-10 border-b-2 border-ink pb-2 first:mt-0"
+            id={`year-${item.year}`}
+          >
+            <h2 class="display text-5xl">{item.year}</h2>
+          </div>
+        ) : (
+          <NewsRow article={item.article} />
+        ),
+      )}
+    </div>
+
+    <p class="mt-10 border-t border-line pt-5 max-w-2xl text-sm leading-relaxed text-muted">
+      Archivo completo del proyecto: 2026 en HOY y 2021–2025 recuperado de la
+      web original. Cada pieza mantiene su enlace original y su ficha propia.
+    </p>
+  </section>
+</BaseLayout>

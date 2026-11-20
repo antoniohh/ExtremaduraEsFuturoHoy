@@ -1,0 +1,94 @@
+---
+import Masthead from "../components/Masthead.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../lib/site";
+import { absoluteUrl, organizationSchema, websiteSchema } from "../lib/seo";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: unknown[];
+  bodyClass?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = "/media/og-default.jpg",
+  noindex = false,
+  jsonLd = [],
+  bodyClass = "",
+  canonicalPath,
+} = Astro.props;
+
+const pageTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
+const canonical = new URL(canonicalPath ?? Astro.url.pathname, SITE.url).toString();
+const ogImage = absoluteUrl(image);
+const schemas = [organizationSchema(), websiteSchema(), ...jsonLd];
+
+const safeJson = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, "\\u003c");
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#FEF6E3" />
+    <meta name="author" content={SITE.author} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link
+      rel="preload"
+      href="/fonts/bebas-neue-latin-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE.name} · RSS`}
+      href="/rss.xml"
+    />
+    <slot name="head" />
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={safeJson(schema)} />
+    ))}
+  </head>
+  <body class={bodyClass}>
+    <a
+      href="#main"
+      class="label fixed left-4 top-4 z-[100] -translate-y-24 bg-ink px-4 py-3 text-paper transition-transform focus:translate-y-0"
+    >
+      Saltar al contenido
+    </a>
+    <Masthead />
+    <main id="main" data-pagefind-body>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

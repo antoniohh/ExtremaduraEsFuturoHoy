@@ -1,0 +1,132 @@
+---
+import { ArrowRight, CalendarDays, Clock, MapPin } from "@lucide/astro";
+import type { Event } from "../lib/schema";
+import { formatEventDate, formatShortDate } from "../lib/format";
+
+interface Props {
+  event: Event;
+  variant?: "hero" | "compact";
+  showCta?: boolean;
+  showDescription?: boolean;
+  headingLevel?: "h1" | "h2";
+}
+
+const {
+  event,
+  variant = "hero",
+  showCta = true,
+  showDescription = true,
+  headingLevel = "h2",
+} = Astro.props;
+const isCompact = variant === "compact";
+const Heading = headingLevel;
+---
+
+{isCompact ? (
+  <article class="border-2 border-ink bg-lemon p-5 text-ink">
+    <div class="flex items-center justify-between gap-3">
+      <span class="label">Próximo encuentro</span>
+      <span class="label">{formatShortDate(event.date)}</span>
+    </div>
+    <h3 class="display mt-4 text-3xl">{event.title}</h3>
+    {event.subtitle && <p class="serif mt-2 text-sm leading-snug">{event.subtitle}</p>}
+    <div class="label mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span class="inline-flex items-center gap-1.5">
+        <MapPin size={12} stroke-width={2} aria-hidden="true" />
+        {event.city}
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <Clock size={12} stroke-width={2} aria-hidden="true" />
+        {event.time}
+      </span>
+    </div>
+    {showCta && (
+      <a
+        href={`/encuentros/${event.slug}/`}
+        class="label u-link mt-5 inline-flex items-center gap-2 hover:text-green"
+      >
+        Ver encuentro
+        <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+      </a>
+    )}
+  </article>
+) : (
+  <article class="relative overflow-hidden border-2 border-ink bg-lemon text-ink">
+    <div class="flex items-center justify-between gap-4 border-b-2 border-ink px-5 py-3 lg:px-8">
+      <span class="label">Encuentro presencial</span>
+      <span class="label">{formatShortDate(event.date)}</span>
+    </div>
+
+    <div class="grid lg:grid-cols-12">
+      <div class="relative p-6 lg:col-span-7 lg:p-10">
+        <span class="sticker absolute -right-2 top-4 lg:right-6">Asistencia libre</span>
+        <div class="bracket-frame">
+          <Heading class="display max-w-2xl text-[clamp(2.7rem,5.2vw,5rem)]">
+            {event.title}
+          </Heading>
+          {event.subtitle && (
+            <p class="serif mt-4 max-w-xl text-xl leading-snug lg:text-2xl">
+              {event.subtitle}
+            </p>
+          )}
+        </div>
+
+        <div class="mt-7 grid gap-3 sm:grid-cols-2">
+          <div class="flex items-start gap-2.5">
+            <CalendarDays size={17} stroke-width={1.8} class="mt-0.5 shrink-0" aria-hidden="true" />
+            <div>
+              <p class="label">Fecha</p>
+              <p class="mt-1 text-sm font-semibold">{formatEventDate(event.date)}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <Clock size={17} stroke-width={1.8} class="mt-0.5 shrink-0" aria-hidden="true" />
+            <div>
+              <p class="label">Hora</p>
+              <p class="mt-1 text-sm font-semibold">{event.time} h</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5 sm:col-span-2">
+            <MapPin size={17} stroke-width={1.8} class="mt-0.5 shrink-0" aria-hidden="true" />
+            <div>
+              <p class="label">Lugar</p>
+              <p class="mt-1 text-sm font-semibold">
+                {event.place} · {event.city}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="serif mt-5 line-clamp-3 max-w-xl text-sm leading-relaxed text-ink/70">
+          {showDescription ? event.description : ""}
+        </p>
+
+        {event.speakers.length > 0 && (
+          <div class="mt-6 border-t border-ink/20 pt-4">
+            <p class="label">Participa</p>
+            <p class="mt-1.5 text-sm font-semibold">{event.speakers.join(" · ")}</p>
+          </div>
+        )}
+
+        {showCta && (
+          <a
+            href={`/encuentros/${event.slug}/`}
+            class="label mt-7 inline-flex items-center gap-2 border-2 border-ink bg-ink px-4 py-3 text-paper transition-colors hover:bg-green"
+          >
+            Ver encuentro
+            <ArrowRight size={14} stroke-width={2} aria-hidden="true" />
+          </a>
+        )}
+      </div>
+
+      <div class="relative border-t-2 border-ink lg:col-span-5 lg:border-l-2 lg:border-t-0">
+        <img
+          src={event.image}
+          alt={`Cartel de ${event.title}`}
+          class="h-full min-h-[320px] w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </article>
+)}

@@ -1,0 +1,65 @@
+---
+import type { Article } from "../lib/schema";
+import { formatDate } from "../lib/format";
+import { articleSrcSet } from "../lib/media";
+import { isExternalHref } from "../lib/url";
+import { KIND_COLOR, KIND_LABEL } from "../lib/site";
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+const external = isExternalHref(article.href);
+---
+
+<article
+  class="news-row group grid grid-cols-[112px_1fr] gap-4 border-t border-line py-5 sm:grid-cols-[190px_1fr] sm:gap-6"
+  data-kind={article.kind}
+>
+  <a
+    href={article.href}
+    class="image-zoom block aspect-[4/3] overflow-hidden bg-line"
+    tabindex="-1"
+    aria-hidden="true"
+    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+  >
+    <img
+      src={article.image}
+      srcset={articleSrcSet(article.image)}
+      sizes="(min-width: 640px) 190px, 112px"
+      alt=""
+      width={article.imageWidth}
+      height={article.imageHeight}
+      class="size-full object-cover"
+      loading="lazy"
+    />
+  </a>
+
+  <div class="min-w-0">
+    <div class="label flex flex-wrap items-center gap-x-2 gap-y-1 text-muted">
+      <span class="inline-flex items-center gap-1.5 text-ink">
+        <span class:list={["size-1.5 rounded-full", KIND_COLOR[article.kind]]} aria-hidden="true"></span>
+        {KIND_LABEL[article.kind]}
+      </span>
+      <span aria-hidden="true">/</span>
+      <time datetime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
+    </div>
+
+    <h3 class="display mt-2 text-[clamp(1.5rem,2.6vw,2.35rem)]">
+      <a
+        href={article.href}
+        class="u-link"
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {article.title}
+      </a>
+    </h3>
+
+    <p class="serif mt-2 hidden line-clamp-2 max-w-2xl text-sm leading-snug text-ink/70 sm:block">
+      {article.excerpt}
+    </p>
+
+    <p class="label mt-3 text-muted">{article.authorName}</p>
+  </div>
+</article>

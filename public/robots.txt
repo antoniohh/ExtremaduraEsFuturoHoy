@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.hoyextremaduraesfuturo.es/sitemap-index.xml

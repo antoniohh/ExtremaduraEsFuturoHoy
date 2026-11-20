@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import InterviewCard from "../../components/InterviewCard.astro";
+import TypeChip from "../../components/TypeChip.astro";
+import ArticleMeta from "../../components/ArticleMeta.astro";
+import ArrowLink from "../../components/ArrowLink.astro";
+import { interviews } from "../../lib/data";
+import { collectionSchema } from "../../lib/seo";
+import { parseInterviewTitle } from "../../lib/format";
+import { SITE } from "../../lib/site";
+
+const [lead, ...rest] = interviews;
+const parsed = parseInterviewTitle(lead.title);
+const jsonLd = [
+  collectionSchema(
+    "Entrevistas",
+    "Conversaciones con personas que construyen futuro desde Extremadura.",
+    "/entrevistas/",
+    interviews,
+  ),
+];
+---
+
+<BaseLayout
+  title="Entrevistas a emprendedores extremeños"
+  description="Conversaciones con emprendedores, empresas y protagonistas que construyen futuro desde Extremadura. Entrevistas de Extremadura es Futuro HOY."
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SectionHeader
+      title="Entrevistas"
+      description="Conversaciones con personas que han decidido quedarse, volver o crear desde Extremadura. Las historias de 2026 se publican en HOY; las de 2021–2025 se han recuperado del archivo original."
+      count={interviews.length}
+      countLabel="entrevistas"
+      actionHref={SITE.hoy.tematica}
+      actionLabel="Ver todas en HOY"
+    />
+
+    <article class="grid gap-8 py-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:py-14">
+      <a
+        href={lead.sourceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative block aspect-[4/5] overflow-hidden bg-line lg:col-span-5"
+        aria-label={`${lead.title} · Leer en HOY`}
+      >
+        <img
+          src={lead.image}
+          alt={lead.title}
+          width={lead.imageWidth}
+          height={lead.imageHeight}
+          class="size-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute left-4 top-4">
+          <TypeChip article={lead} />
+        </div>
+      </a>
+
+      <div class="lg:col-span-7">
+        {parsed.name && <p class="label text-muted">{parsed.name}</p>}
+        <h2 class="display mt-3 text-[clamp(2.8rem,5.5vw,5rem)]">
+          <a
+            href={lead.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="u-link"
+          >
+            {parsed.quote ? `«${parsed.quote}»` : lead.title}
+          </a>
+        </h2>
+        {parsed.company && (
+          <span class="label mt-4 inline-block rounded-full border border-ink/20 bg-white px-3 py-1.5">
+            {parsed.company}
+          </span>
+        )}
+        <p class="serif mt-5 max-w-2xl text-lg leading-snug text-ink/75 lg:text-xl">
+          {lead.excerpt}
+        </p>
+        <div class="mt-6">
+          <ArticleMeta article={lead} />
+        </div>
+        <div class="mt-7">
+          <ArrowLink href={lead.sourceUrl} label="Leer la entrevista" external />
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <section class="mx-auto max-w-[1280px] px-5 pb-16 lg:px-8 lg:pb-24">
+    <div class="flex items-end justify-between border-t-2 border-ink pt-6">
+      <h2 class="display text-4xl lg:text-5xl">Todas las voces</h2>
+      <span class="label hidden text-muted sm:block">{rest.length} más</span>
+    </div>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {rest.map((article) => (
+        <InterviewCard article={article} />
+      ))}
+    </div>
+
+    <p class="mt-10 border-t border-line pt-5 max-w-2xl text-sm leading-relaxed text-muted">
+      {interviews.length} entrevistas y piezas de protagonistas. Las de 2021–2025
+      se han recuperado del archivo original del proyecto; las de 2026 enlazan a
+      su publicación en HOY.
+    </p>
+  </section>
+</BaseLayout>

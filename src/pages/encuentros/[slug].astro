@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import EventPoster from "../../components/EventPoster.astro";
+import NewsRow from "../../components/NewsRow.astro";
+import { events, getRelatedArticles } from "../../lib/data";
+import { breadcrumbSchema, eventSchema } from "../../lib/seo";
+import { formatEventDate, truncate } from "../../lib/format";
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const related = getRelatedArticles(event);
+
+const [hours, minutes] = (event.time || "18:00").split(":").map(Number);
+const endHours = (hours + 2) % 24;
+const datePart = event.date.replace(/-/g, "");
+const dtStart = `${datePart}T${String(hours).padStart(2, "0")}${String(minutes).padStart(2, "0")}00`;
+const dtEnd = `${datePart}T${String(endHours).padStart(2, "0")}${String(minutes).padStart(2, "0")}00`;
+
+const ics = [
+  "BEGIN:VCALENDAR",
+  "VERSION:2.0",
+  "PRODID:-//Extremadura es Futuro HOY//ES",
+  "BEGIN:VEVENT",
+  `UID:${event.slug}@hoyextremaduraesfuturo.es`,
+  `DTSTART:${dtStart}`,
+  `DTEND:${dtEnd}`,
+  `SUMMARY:${event.title}`,
+  `LOCATION:${event.place}, ${event.city}`,
+  `DESCRIPTION:${event.description.replace(/\n/g, " ")}`,
+  "END:VEVENT",
+  "END:VCALENDAR",
+].join("\r\n");
+
+const icsHref = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${event.place}, ${event.city}, ${event.province || "Extremadura"}`,
+)}`;
+
+const jsonLd = [
+  eventSchema(event),
+  breadcrumbSchema([
+    { name: "Inicio", path: "/" },
+    { name: "Encuentros", path: "/encuentros/" },
+    { name: event.title, path: `/encuentros/${event.slug}/` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`${event.title} · ${event.city}`}
+  description={truncate(event.description, 155)}
+  image={event.image}
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1280px] px-5 py-8 lg:px-8 lg:py-12">
+    <Breadcrumbs
+      items={[
+        { name: "Inicio", href: "/" },
+        { name: "Encuentros", href: "/encuentros/" },
+        { name: event.title, href: `/encuentros/${event.slug}/` },
+      ]}
+    />
+
+    <div class="mt-8">
+      <EventPoster event={event} showCta={false} headingLevel="h1" />
+    </div>
+
+    <div class="grid gap-10 py-12 lg:grid-cols-12 lg:gap-14">
+      <div class="lg:col-span-7">
+        {event.speakers.length > 0 && (
+          <div class="border-t border-line pt-5">
+            <p class="label text-muted">Participantes</p>
+            <ul class="mt-3 space-y-2">
+              {event.speakers.map((speaker) => (
+                <li class="display text-2xl">{speaker}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {event.videoUrl && (
+          <div class="mt-8 border-t border-line pt-5">
+            <p class="label text-muted">Vídeo del encuentro</p>
+            <a
+              href={event.videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group mt-3 flex items-center gap-4 border-2 border-ink bg-ink p-4 text-paper transition-colors hover:bg-green"
+            >
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-full bg-lemon">
+                <span class="ml-1 block size-0 border-y-[6px] border-l-[10px] border-y-transparent border-l-ink"></span>
+              </span>
+              <span>
+                <span class="label block text-paper/70">YouTube</span>
+                <span class="mt-1 block font-semibold">Ver el encuentro completo</span>
+              </span>
+            </a>
+          </div>
+        )}
+
+        {related.length > 0 && (
+          <div class="mt-10 border-t-2 border-ink pt-6">
+            <h2 class="display text-3xl">También te puede interesar</h2>
+            <div class="mt-2">
+              {related.map((article) => (
+                <NewsRow article={article} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <aside class="lg:col-span-5">
+        <div class="border-2 border-ink bg-lemon p-6">
+          <p class="label">Cuándo y dónde</p>
+          <p class="display mt-3 text-3xl">{formatEventDate(event.date)}</p>
+          <p class="mt-1 text-sm font-semibold">{event.time} h</p>
+          <p class="mt-4 text-sm leading-relaxed">
+            {event.place}<br />
+            {event.city}{event.province ? ` (${event.province})` : ""}
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3">
+            {event.status === "upcoming" ? (
+              <>
+                <a
+                  href={mapHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="label inline-flex items-center justify-center border-2 border-ink bg-ink px-4 py-3 text-paper transition-colors hover:bg-green"
+                >
+                  Cómo llegar
+                </a>
+                <a
+                  href={icsHref}
+                  download={`${event.slug}.ics`}
+                  class="label inline-flex items-center justify-center border-2 border-ink px-4 py-3 transition-colors hover:bg-paper"
+                >
+                  Añadir al calendario
+                </a>
+              </>
+            ) : (
+              <p class="label border-2 border-ink px-4 py-3 text-center">
+                Encuentro celebrado
+              </p>
+            )}
+          </div>
+
+          <p class="mt-5 text-xs leading-relaxed text-ink/60">
+            Asistencia libre hasta completar aforo. Si el aforo está completo, se
+            respetará el orden de acceso.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

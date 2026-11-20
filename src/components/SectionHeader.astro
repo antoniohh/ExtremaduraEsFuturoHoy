@@ -1,0 +1,49 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+
+interface Props {
+  title: string;
+  description: string;
+  count?: number;
+  countLabel?: string;
+  actionHref?: string;
+  actionLabel?: string;
+}
+
+const {
+  title,
+  description,
+  count,
+  countLabel = "piezas",
+  actionHref,
+  actionLabel,
+} = Astro.props;
+---
+
+<header class="mb-8 border-b-2 border-ink">
+  <div class="-mx-5 bg-lemon px-5 py-6 lg:-mx-8 lg:px-8 lg:py-8">
+    <h1 class="display text-[clamp(3.4rem,9vw,7.5rem)]">{title}</h1>
+  </div>
+
+  <div class="grid gap-5 py-5 lg:grid-cols-12 lg:items-end">
+    <p class="serif max-w-2xl text-lg leading-snug text-ink/75 lg:col-span-8 lg:text-xl">
+      {description}
+    </p>
+    <div class="flex flex-wrap items-center gap-4 lg:col-span-4 lg:justify-end">
+      {typeof count === "number" && (
+        <span class="label text-muted">{count} {countLabel}</span>
+      )}
+      {actionHref && actionLabel && (
+        <a
+          href={actionHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="label u-link inline-flex items-center gap-1.5 text-ink hover:text-green"
+        >
+          {actionLabel}
+          <ArrowUpRight size={13} stroke-width={2} aria-hidden="true" />
+        </a>
+      )}
+    </div>
+  </div>
+</header>

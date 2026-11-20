@@ -1,0 +1,24 @@
+---
+import type { Article } from "../lib/schema";
+import { KIND_COLOR, KIND_LABEL } from "../lib/site";
+
+interface Props {
+  article: Article;
+  className?: string;
+}
+
+const { article, className = "" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "label inline-flex items-center gap-2 rounded-full bg-ink px-3 py-1.5 text-paper",
+    className,
+  ]}
+>
+  <span
+    class:list={["size-1.5 rounded-full", KIND_COLOR[article.kind]]}
+    aria-hidden="true"
+  ></span>
+  {KIND_LABEL[article.kind]}
+</span>

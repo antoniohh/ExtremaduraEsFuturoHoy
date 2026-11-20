@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialHeader from "../components/SocialHeader.astro";
+import SocialTile from "../components/SocialTile.astro";
+import ArrowLink from "../components/ArrowLink.astro";
+import { instagramPosts } from "../lib/data";
+import { SITE } from "../lib/site";
+
+const posts = instagramPosts;
+---
+
+<BaseLayout
+  title="Instagram de Extremadura es Futuro HOY"
+  description="Últimas publicaciones de Instagram de Extremadura es Futuro HOY: entrevistas, encuentros y clips sobre talento extremeño."
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SocialHeader
+      platform="Instagram"
+      handle="@extremaduraesfuturohoy"
+      description="Entrevistas, encuentros y clips sobre las personas que están construyendo el futuro desde Extremadura."
+      href={SITE.social.instagram}
+      accent="bg-magenta text-ink"
+      note={`${posts.length} publicaciones del perfil oficial. Cada pieza enlaza a la publicación original; no se cargan scripts de Instagram en esta página.`}
+    />
+  </div>
+
+  <section class="mx-auto max-w-[1280px] px-5 py-10 lg:px-8 lg:py-14">
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3">
+        {posts.map((post) => (
+          <SocialTile post={post} />
+        ))}
+        <a
+          href={SITE.social.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex aspect-[4/5] flex-col justify-between border-2 border-ink bg-lemon p-5 transition-colors hover:bg-cyan"
+        >
+          <span class="label">Más en Instagram</span>
+          <span class="display text-[clamp(2rem,4vw,3.4rem)]">
+            Sigue la conversación
+          </span>
+          <span class="label inline-flex items-center gap-2">
+            Abrir perfil
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      </div>
+    ) : (
+      <div class="border-2 border-ink bg-lemon p-8">
+        <p class="display text-4xl">Estamos curando el perfil</p>
+        <p class="serif mt-3 max-w-xl text-lg">
+          Mientras tanto, puedes ver todas las publicaciones directamente en
+          Instagram.
+        </p>
+        <div class="mt-6">
+          <ArrowLink href={SITE.social.instagram} label="Abrir Instagram" external />
+        </div>
+      </div>
+    )}
+
+    <div class="mt-10 border-t border-line pt-6">
+      <p class="max-w-2xl text-sm leading-relaxed text-muted">
+        Esta página reúne las publicaciones del perfil oficial de Instagram.
+        Las imágenes y los textos pertenecen a Extremadura es Futuro HOY. Si eres
+        protagonista de una pieza y quieres corregir algo, escríbenos desde la
+        página de contacto.
+      </p>
+      <div class="mt-5">
+        <ArrowLink href={SITE.social.instagram} label="Seguir en Instagram" external />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,208 @@
+AddDefaultCharset UTF-8
+DirectoryIndex index.html
+Options -Indexes
+
+ErrorDocument 404 /404.html
+
+# Migración del WordPress original
+Redirect 301 /ediciones-anteriores/ /ediciones/
+RedirectMatch 410 ^/(login|register|resetpass|your-profile)/?$
+
+Redirect 301 /2025/03/20/unete-al-primer-roadshow-de-efes-impact-en-extremadura/ /noticias/unete-al-primer-roadshow-de-efes-impact-en-extremadura/
+Redirect 301 /2025/03/03/abierto-el-laboratorio-de-impacto-social-transfronterizo/ /noticias/abierto-el-laboratorio-de-impacto-social-transfronterizo/
+Redirect 301 /2025/01/03/caja-rural-de-extremadura-reconoce-a-cinco-empresas-y-directivos-en-los-premios-espiga-innovacion-y-sostenibilidad/ /noticias/caja-rural-de-extremadura-reconoce-a-cinco-empresas-y-directivos-en-los-premios-espiga-innovacion-y-sostenibilidad/
+Redirect 301 /2024/12/17/la-diputacion-selecciona-28-proyectos-en-su-programa-de-emprendimiento-rural/ /noticias/la-diputacion-selecciona-28-proyectos-en-su-programa-de-emprendimiento-rural/
+Redirect 301 /2024/12/10/la-fundacion-cepaim-apuesta-por-el-empleo-y-el-emprendimiento-joven/ /noticias/la-fundacion-cepaim-apuesta-por-el-empleo-y-el-emprendimiento-joven/
+Redirect 301 /2024/11/28/el-sexpe-comprara-un-local-de-500-metros-cuadrados-en-badajoz-para-crear-un-centro-de-empleo/ /noticias/el-sexpe-comprara-un-local-de-500-metros-cuadrados-en-badajoz-para-crear-un-centro-de-empleo/
+Redirect 301 /2024/11/08/1882/ /noticias/1882/
+Redirect 301 /2024/11/05/samara-emprende-convoca-su-cuarta-edicion-para-fomentar-la-excelencia-empresarial/ /noticias/samara-emprende-convoca-su-cuarta-edicion-para-fomentar-la-excelencia-empresarial/
+Redirect 301 /2024/10/23/abiertas-las-inscripciones-para-la-feria-del-empleo-el-emprendimiento-y-la-empresa-de-diputacion/ /noticias/abiertas-las-inscripciones-para-la-feria-del-empleo-el-emprendimiento-y-la-empresa-de-diputacion/
+Redirect 301 /2024/10/15/grupo-incalexa-gana-el-premio-joven-empresario-del-ano/ /noticias/grupo-incalexa-gana-el-premio-joven-empresario-del-ano/
+Redirect 301 /2024/09/10/una-pre-incubadora-para-estudiantes-extremenos/ /noticias/una-pre-incubadora-para-estudiantes-extremenos/
+Redirect 301 /2024/06/24/el-comercio-exterior-como-oportunidad-laboral/ /noticias/el-comercio-exterior-como-oportunidad-laboral/
+Redirect 301 /2024/06/17/buscamos-tamano-de-mercado/ /noticias/buscamos-tamano-de-mercado/
+Redirect 301 /2024/06/10/compites-con-gente-muy-buena/ /noticias/compites-con-gente-muy-buena/
+Redirect 301 /2024/06/03/la-internacionalizacion-es-un-reto/ /noticias/la-internacionalizacion-es-un-reto/
+Redirect 301 /2024/05/27/internacionalizacion-y-retorno-del-talento/ /noticias/internacionalizacion-y-retorno-del-talento/
+Redirect 301 /2024/05/21/el-emprendimiento-en-extremadura-una-oportunidad-de-oro-para-nuevos-empresarios/ /noticias/el-emprendimiento-en-extremadura-una-oportunidad-de-oro-para-nuevos-empresarios/
+Redirect 301 /2024/05/20/siendo-extremeno-se-puede-llegar-a-otras-partes-del-mundo/ /noticias/siendo-extremeno-se-puede-llegar-a-otras-partes-del-mundo/
+Redirect 301 /2024/05/13/constancia-precision-y-entrega/ /noticias/constancia-precision-y-entrega/
+Redirect 301 /2024/05/06/dos-emprendedoras-expertas-en-fermentados/ /noticias/dos-emprendedoras-expertas-en-fermentados/
+Redirect 301 /2024/05/06/necesitamos-la-colaboracion-internacional/ /noticias/necesitamos-la-colaboracion-internacional/
+Redirect 301 /2024/04/29/la-internacionalizacion-es-un-objetivo-real/ /noticias/la-internacionalizacion-es-un-objetivo-real/
+Redirect 301 /2024/04/22/somos-una-compania-global-con-alma-extremena/ /noticias/somos-una-compania-global-con-alma-extremena/
+Redirect 301 /2024/04/16/los-empresarios-mas-madrugadores/ /noticias/los-empresarios-mas-madrugadores/
+Redirect 301 /2024/04/15/nos-hemos-adaptado-al-consumidor-europeo/ /noticias/nos-hemos-adaptado-al-consumidor-europeo/
+Redirect 301 /2024/03/21/impulso-al-emprendimiento-digital-en-herrera-del-duque/ /noticias/impulso-al-emprendimiento-digital-en-herrera-del-duque/
+Redirect 301 /2024/03/18/quien-no-arriesga-no-gana/ /noticias/quien-no-arriesga-no-gana/
+Redirect 301 /2024/03/14/la-camara-de-comercio-de-caceres-forma-a-mujeres-de-la-zona-para-emprender/ /noticias/la-camara-de-comercio-de-caceres-forma-a-mujeres-de-la-zona-para-emprender/
+Redirect 301 /2024/03/11/la-sostenibilidad-es-un-camino-indudable/ /noticias/la-sostenibilidad-es-un-camino-indudable/
+Redirect 301 /2024/03/07/samuel-fuentes-joven-emprendedor-si-no-arriesgas-en-los-negocios-no-ganas/ /noticias/samuel-fuentes-joven-emprendedor-si-no-arriesgas-en-los-negocios-no-ganas/
+Redirect 301 /2024/03/05/monesterio-homenaje-a-las-mujeres-empresarias-de-su-localidad/ /noticias/monesterio-homenaje-a-las-mujeres-empresarias-de-su-localidad/
+Redirect 301 /2024/03/04/cambiar-la-mentalidad/ /noticias/cambiar-la-mentalidad/
+Redirect 301 /2024/02/26/la-sostenibilidad-es-un-reto/ /noticias/la-sostenibilidad-es-un-reto/
+Redirect 301 /2024/02/19/el-producto-es-tu-maximo-valor/ /noticias/el-producto-es-tu-maximo-valor/
+Redirect 301 /2024/02/15/la-escuela-de-micronegocios-abre-inscripciones-en-merida/ /noticias/la-escuela-de-micronegocios-abre-inscripciones-en-merida/
+Redirect 301 /2024/02/12/nuestra-responsabilidad-es-crear-riqueza-social/ /noticias/nuestra-responsabilidad-es-crear-riqueza-social/
+Redirect 301 /2024/02/05/la-inversion-nos-hace-mas-sostenible/ /noticias/la-inversion-nos-hace-mas-sostenible/
+Redirect 301 /2024/01/29/la-sostenibilidad-es-un-compromiso-necesario/ /noticias/la-sostenibilidad-es-un-compromiso-necesario/
+Redirect 301 /2024/01/23/en-marcha-el-vi-plan-de-emprendimiento-en-malpartida/ /noticias/en-marcha-el-vi-plan-de-emprendimiento-en-malpartida/
+Redirect 301 /2024/01/22/en-extremadura-hay-productos-de-gran-calidad/ /noticias/en-extremadura-hay-productos-de-gran-calidad/
+Redirect 301 /2024/01/15/el-fin-es-que-la-empresa-sea-mas-sostenible/ /noticias/el-fin-es-que-la-empresa-sea-mas-sostenible/
+Redirect 301 /2024/01/04/la-ilipense-inma-saavedra-premio-a-la-emprendedora-mas-joven-en-la-i-gala-de-la-igualdad/ /noticias/la-ilipense-inma-saavedra-premio-a-la-emprendedora-mas-joven-en-la-i-gala-de-la-igualdad/
+Redirect 301 /2023/12/18/la-innovacion-es-un-reto/ /noticias/la-innovacion-es-un-reto/
+Redirect 301 /2023/12/13/un-proyecto-de-yogures-sanos-y-otro-de-astroturismo-premios-pie-al-emprendimiento-rural-en-caceres/ /noticias/un-proyecto-de-yogures-sanos-y-otro-de-astroturismo-premios-pie-al-emprendimiento-rural-en-caceres/
+Redirect 301 /2023/12/11/trabajar-desde-la-vocacion/ /noticias/trabajar-desde-la-vocacion/
+Redirect 301 /2023/12/04/captar-talento/ /noticias/captar-talento/
+Redirect 301 /2023/11/27/si-quieres-hacer-algo-encuentra-el-camino/ /noticias/si-quieres-hacer-algo-encuentra-el-camino/
+Redirect 301 /2023/11/20/empresario-con-afan-de-emprendedor/ /noticias/empresario-con-afan-de-emprendedor/
+Redirect 301 /2023/11/13/calidad-aprendizaje-responsabilidad-y-autenticidad/ /noticias/calidad-aprendizaje-responsabilidad-y-autenticidad/
+Redirect 301 /2023/11/06/la-marca-lo-es-todo/ /noticias/la-marca-lo-es-todo/
+Redirect 301 /2023/10/30/define-bien-tus-valores/ /noticias/define-bien-tus-valores/
+Redirect 301 /2023/10/23/cuidar-la-marca/ /noticias/cuidar-la-marca/
+Redirect 301 /2023/10/16/no-hay-que-tener-miedo/ /noticias/no-hay-que-tener-miedo/
+Redirect 301 /2023/10/09/es-clave-el-tandem-marca-producto/ /noticias/es-clave-el-tandem-marca-producto/
+Redirect 301 /2023/10/02/tarra-ya-un-proyecto-para-recuperar-el-recetario-extremeno/ /noticias/tarra-ya-un-proyecto-para-recuperar-el-recetario-extremeno/
+Redirect 301 /2023/10/02/la-base-es-la-formacion/ /noticias/la-base-es-la-formacion/
+Redirect 301 /2023/09/25/nacer-de-una-idea/ /noticias/nacer-de-una-idea/
+Redirect 301 /2023/09/21/jara-conde-la-extremena-sumiller-que-abre-un-winebar-en-badajoz/ /noticias/jara-conde-la-extremena-sumiller-que-abre-un-winebar-en-badajoz/
+Redirect 301 /2023/09/18/sin-conocimientos-no-se-emprende/ /noticias/sin-conocimientos-no-se-emprende/
+Redirect 301 /2023/09/12/juanjo-benitez-echa-lena-al-picon/ /noticias/juanjo-benitez-echa-lena-al-picon/
+Redirect 301 /2023/09/05/el-programa-escuela-de-micronegocios-se-pone-en-marcha-en-plasencia/ /noticias/el-programa-escuela-de-micronegocios-se-pone-en-marcha-en-plasencia/
+Redirect 301 /2023/08/22/brands-products-compra-la-empresa-extremena-enjoyers/ /noticias/brands-products-compra-la-empresa-extremena-enjoyers/
+Redirect 301 /2023/08/10/arranca-el-programa-para-mujeres-sin-empleo-de-la-fundacion-caja-extremadura/ /noticias/arranca-el-programa-para-mujeres-sin-empleo-de-la-fundacion-caja-extremadura/
+Redirect 301 /2023/08/03/el-ayuntamiento-de-merida-creara-tres-espacios-de-networking-para-impulsar-la-economia-y-atender-a-los-empresarios/ /noticias/el-ayuntamiento-de-merida-creara-tres-espacios-de-networking-para-impulsar-la-economia-y-atender-a-los-empresarios/
+Redirect 301 /2023/07/25/mas-emprendimiento-mas-coria-ofrece-asesoramiento-a-emprendedores/ /noticias/mas-emprendimiento-mas-coria-ofrece-asesoramiento-a-emprendedores/
+Redirect 301 /2023/06/26/el-emprendimiento-es-ilusion/ /noticias/el-emprendimiento-es-ilusion/
+Redirect 301 /2023/06/20/carlos-campos-maria-hernandez-y-ruben-fernandez-los-emprendedores-detras-de-mintha-centro/ /noticias/carlos-campos-maria-hernandez-y-ruben-fernandez-los-emprendedores-detras-de-mintha-centro/
+Redirect 301 /2023/06/19/hay-que-darle-valor-a-lo-que-tenemos/ /noticias/hay-que-darle-valor-a-lo-que-tenemos/
+Redirect 301 /2023/06/12/la-formacion-es-necesaria-a-todos-los-niveles/ /noticias/la-formacion-es-necesaria-a-todos-los-niveles/
+Redirect 301 /2023/06/06/un-algoritmo-disenado-por-extremenos-predice-la-personalidad/ /noticias/un-algoritmo-disenado-por-extremenos-predice-la-personalidad/
+Redirect 301 /2023/06/05/hay-que-evolucionar-por-fuerza/ /noticias/hay-que-evolucionar-por-fuerza/
+Redirect 301 /2023/05/30/la-artesana-cacerena-que-cambio-zara-por-la-ropa-ecologica/ /noticias/la-artesana-cacerena-que-cambio-zara-por-la-ropa-ecologica/
+Redirect 301 /2023/05/29/la-energia-una-debilidad/ /noticias/la-energia-una-debilidad/
+Redirect 301 /2023/05/23/ayudas-a-emprendedores-en-villanueva-de-la-serena/ /noticias/ayudas-a-emprendedores-en-villanueva-de-la-serena/
+Redirect 301 /2023/05/22/la-digitalizacion-es-una-necesidad/ /noticias/la-digitalizacion-es-una-necesidad/
+Redirect 301 /2023/05/16/lambala-joyas-chuches-badajoz/ /noticias/lambala-joyas-chuches-badajoz/
+Redirect 301 /2023/05/15/el-emprendimiento-nuestro-gran-aliado/ /noticias/el-emprendimiento-nuestro-gran-aliado/
+Redirect 301 /2023/05/09/el-ies-melendez-valdes-inaugura-melemprende-una-nueva-aula-de-emprendimiento/ /noticias/el-ies-melendez-valdes-inaugura-melemprende-una-nueva-aula-de-emprendimiento/
+Redirect 301 /2023/05/08/la-adaptacion-es-fundamental/ /noticias/la-adaptacion-es-fundamental/
+Redirect 301 /2023/04/24/extremadura-esta-en-un-momento-unico/ /noticias/extremadura-esta-en-un-momento-unico/
+Redirect 301 /2023/04/17/el-cambio-es-fundamental/ /noticias/el-cambio-es-fundamental/
+Redirect 301 /2023/04/10/emprender-con-sostenibilidad/ /noticias/emprender-con-sostenibilidad/
+Redirect 301 /2023/03/28/cecilia-navarro-la-extremena-que-lleva-la-artesania-y-el-mundo-rural-a-la-madrid-fashion-week/ /noticias/cecilia-navarro-la-extremena-que-lleva-la-artesania-y-el-mundo-rural-a-la-madrid-fashion-week/
+Redirect 301 /2023/03/27/hay-que-estar-atentos-a-las-demandas/ /noticias/hay-que-estar-atentos-a-las-demandas/
+Redirect 301 /2023/03/21/isabel-obreo-la-ingeniera-que-hace-muebles-de-madera/ /noticias/isabel-obreo-la-ingeniera-que-hace-muebles-de-madera/
+Redirect 301 /2023/03/20/ganas-e-ilusion/ /noticias/ganas-e-ilusion/
+Redirect 301 /2023/03/16/smallops-es-la-start-up-mas-innovadora-de-extremadura/ /noticias/smallops-es-la-start-up-mas-innovadora-de-extremadura/
+Redirect 301 /2023/03/14/experiencia-y-formacion/ /noticias/experiencia-y-formacion/
+Redirect 301 /2023/03/06/formacion-dual/ /noticias/formacion-dual/
+Redirect 301 /2023/02/27/hay-que-ser-una-persona-activa/ /noticias/hay-que-ser-una-persona-activa/
+Redirect 301 /2023/02/20/la-formacion-te-da-instrumentos-seguridad-y-experiencia/ /noticias/la-formacion-te-da-instrumentos-seguridad-y-experiencia/
+Redirect 301 /2023/02/13/la-comunicacion-es-esencial/ /noticias/la-comunicacion-es-esencial/
+Redirect 301 /2023/02/06/emprendedor-nace-o-se-hace/ /noticias/emprendedor-nace-o-se-hace/
+Redirect 301 /2023/01/30/todo-es-empezar/ /noticias/todo-es-empezar/
+Redirect 301 /2023/01/23/ningun-emprendimiento-es-sencillo/ /noticias/ningun-emprendimiento-es-sencillo/
+Redirect 301 /2023/01/23/el-consejo-social-de-la-uex-convoca-una-nueva-edicion-del-programa-de-becas-y-practicas-remuneradas-extremadura-es-futuro/ /noticias/el-consejo-social-de-la-uex-convoca-una-nueva-edicion-del-programa-de-becas-y-practicas-remuneradas-extremadura-es-futuro/
+Redirect 301 /2023/01/17/gaia-montessori-un-soplo-de-aire-fresco-a-la-educacion-tradicional-en-badajoz/ /noticias/gaia-montessori-un-soplo-de-aire-fresco-a-la-educacion-tradicional-en-badajoz/
+Redirect 301 /2023/01/16/hace-falta-cualificacion/ /noticias/hace-falta-cualificacion/
+Redirect 301 /2023/01/10/un-desguace-digitalizado-de-casas-de-millan-gana-el-premio-de-ideas-emprendedoras-de-la-diputacion-de-caceres/ /noticias/un-desguace-digitalizado-de-casas-de-millan-gana-el-premio-de-ideas-emprendedoras-de-la-diputacion-de-caceres/
+Redirect 301 /2023/01/05/la-aceleradora-de-empresas-agila-arranca-con-21-proyectos-de-sectores-como-la-tecnologia/ /noticias/la-aceleradora-de-empresas-agila-arranca-con-21-proyectos-de-sectores-como-la-tecnologia/
+Redirect 301 /2022/12/22/40-emprendedores-acuden-al-caceres-talk/ /noticias/40-emprendedores-acuden-al-caceres-talk/
+Redirect 301 /2022/12/19/crear-riqueza/ /noticias/crear-riqueza/
+Redirect 301 /2022/12/13/descubre-como-fue-el-v-congreso-mujer-executiva-celebrado-en-badajoz/ /noticias/descubre-como-fue-el-v-congreso-mujer-executiva-celebrado-en-badajoz/
+Redirect 301 /2022/12/12/hay-que-aprovechar-las-oportunidades/ /noticias/hay-que-aprovechar-las-oportunidades/
+Redirect 301 /2022/12/05/tenemos-que-evolucionar-continuamente/ /noticias/tenemos-que-evolucionar-continuamente/
+Redirect 301 /2022/12/05/lucia-denche-recibe-el-premio-del-foro-extremadura-es-futuro/ /noticias/lucia-denche-recibe-el-premio-del-foro-extremadura-es-futuro/
+Redirect 301 /2022/12/02/la-pacense-sonia-ramos-torres-ganadora-de-la-sexta-edicion-de-gira-mujeres-de-coca-cola/ /noticias/la-pacense-sonia-ramos-torres-ganadora-de-la-sexta-edicion-de-gira-mujeres-de-coca-cola/
+Redirect 301 /2022/12/01/emprendedores-miajadenos-en-la-ii-feria-transfronteriza-de-moda-sostenible-y-reciclaje-textil/ /noticias/emprendedores-miajadenos-en-la-ii-feria-transfronteriza-de-moda-sostenible-y-reciclaje-textil/
+Redirect 301 /2022/11/28/constancia-persistencia-insistencia/ /noticias/constancia-persistencia-insistencia/
+Redirect 301 /2022/11/21/la-juventud-tiene-que-ser-una-esponja/ /noticias/la-juventud-tiene-que-ser-una-esponja/
+Redirect 301 /2022/11/14/i-foro-para-jovenes-extremadura-es-futuro-tendiendo-puentes-entre-la-universidad-y-la-empresa/ /noticias/i-foro-para-jovenes-extremadura-es-futuro-tendiendo-puentes-entre-la-universidad-y-la-empresa/
+Redirect 301 /2022/11/14/hay-que-tener-decision-y-ser-valiente/ /noticias/hay-que-tener-decision-y-ser-valiente/
+Redirect 301 /2022/11/08/iciar-munoz-una-de-las-impulsoras-de-la-vendita/ /noticias/iciar-munoz-una-de-las-impulsoras-de-la-vendita/
+Redirect 301 /2022/11/07/hay-que-innovar-y-mejorar/ /noticias/hay-que-innovar-y-mejorar/
+Redirect 301 /2022/10/31/innovar-es-absolutamente-imprescindible/ /noticias/innovar-es-absolutamente-imprescindible/
+Redirect 301 /2022/10/25/comienza-el-v-plan-de-emprendimiento-en-malpartida-de-caceres/ /noticias/comienza-el-v-plan-de-emprendimiento-en-malpartida-de-caceres/
+Redirect 301 /2022/10/24/la-constancia-es-sumamente-importante/ /noticias/la-constancia-es-sumamente-importante/
+Redirect 301 /2022/10/17/lucha-por-hacer-tus-suenos-realidad/ /noticias/lucha-por-hacer-tus-suenos-realidad/
+Redirect 301 /2022/10/11/la-historia-de-los-nomadas-que-abrieron-un-bar/ /noticias/la-historia-de-los-nomadas-que-abrieron-un-bar/
+Redirect 301 /2022/10/10/somos-extremenos/ /noticias/somos-extremenos/
+Redirect 301 /2022/10/04/samaracamp-un-proyecto-para-jovenes-emprendedores/ /noticias/samaracamp-un-proyecto-para-jovenes-emprendedores/
+Redirect 301 /2022/10/03/aprender-es-basico/ /noticias/aprender-es-basico/
+Redirect 301 /2022/09/27/la-cereza-el-secreto-de-estas-emprendedoras/ /noticias/la-cereza-el-secreto-de-estas-emprendedoras/
+Redirect 301 /2022/09/13/abierto-el-plazo-para-participar-en-la-ii-edicion-del-programa-de-emprendimiento-universitario-de-extremadura/ /noticias/abierto-el-plazo-para-participar-en-la-ii-edicion-del-programa-de-emprendimiento-universitario-de-extremadura/
+Redirect 301 /2022/07/28/leticia-y-jose-los-creadores-del-primer-glamping-en-el-valle-del-jerte/ /noticias/leticia-y-jose-los-creadores-del-primer-glamping-en-el-valle-del-jerte/
+Redirect 301 /2022/07/26/una-aceleradora-de-start-ups-en-caceres/ /noticias/una-aceleradora-de-start-ups-en-caceres/
+Redirect 301 /2022/07/14/19-91-restobar-el-sueno-de-dos-emprendedores-del-91/ /noticias/19-91-restobar-el-sueno-de-dos-emprendedores-del-91/
+Redirect 301 /2022/06/21/exito-rotundo-en-la-primera-feria-de-emprendedoras-extremenas/ /noticias/exito-rotundo-en-la-primera-feria-de-emprendedoras-extremenas/
+Redirect 301 /2022/06/20/la-audacia-va-ligada-a-la-valentia/ /noticias/la-audacia-va-ligada-a-la-valentia/
+Redirect 301 /2022/06/14/diez-proyectos-extremenos-podran-mejorar-su-competitividad-con-samara-emprende/ /noticias/diez-proyectos-extremenos-podran-mejorar-su-competitividad-con-samara-emprende/
+Redirect 301 /2022/06/13/los-jovenes-tienen-que-abrir-mas-la-mente/ /noticias/los-jovenes-tienen-que-abrir-mas-la-mente/
+Redirect 301 /2022/06/09/fademur-imparte-talleres-dirigidos-al-emprendimiento-y-el-autoempleo/ /noticias/fademur-imparte-talleres-dirigidos-al-emprendimiento-y-el-autoempleo/
+Redirect 301 /2022/06/06/hay-que-detectar-las-oportunidades/ /noticias/hay-que-detectar-las-oportunidades/
+Redirect 301 /2022/05/30/somos-una-empresa-tecnologica-fundada-por-agricultores/ /noticias/somos-una-empresa-tecnologica-fundada-por-agricultores/
+Redirect 301 /2022/05/26/la-escuela-de-micronegocios-clausura-su-tercera-edicion-en-zafra/ /noticias/la-escuela-de-micronegocios-clausura-su-tercera-edicion-en-zafra/
+Redirect 301 /2022/05/23/hay-que-desmitificar-la-vision-porque-todos-podemos-tener-vision/ /noticias/hay-que-desmitificar-la-vision-porque-todos-podemos-tener-vision/
+Redirect 301 /2022/05/17/dos-madres-empoderadas-y-orgullosas-de-no-renunciar-crean-una-marca-sostenible/ /noticias/dos-madres-empoderadas-y-orgullosas-de-no-renunciar-crean-una-marca-sostenible/
+Redirect 301 /2022/05/16/hay-que-tener-paciencia-esfuerzo-y-preparacion/ /noticias/hay-que-tener-paciencia-esfuerzo-y-preparacion/
+Redirect 301 /2022/05/12/jovenes-talentos-que-inspiran-a-extremadura/ /noticias/jovenes-talentos-que-inspiran-a-extremadura/
+Redirect 301 /2022/05/10/profesores-de-forestales-crean-una-app-para-combatir-el-cambio-climatico/ /noticias/profesores-de-forestales-crean-una-app-para-combatir-el-cambio-climatico/
+Redirect 301 /2022/05/09/hay-que-tener-paciencia/ /noticias/hay-que-tener-paciencia/
+Redirect 301 /2022/05/05/16-millones-euros-para-innovar-y-emprender-en-las-zonas-rurales-extremenas/ /noticias/16-millones-euros-para-innovar-y-emprender-en-las-zonas-rurales-extremenas/
+Redirect 301 /2022/04/26/de-coger-aceitunas-a-emprender-en-badajoz/ /noticias/de-coger-aceitunas-a-emprender-en-badajoz/
+Redirect 301 /2022/04/25/nuestro-principio-es-invertir-en-extremadura/ /noticias/nuestro-principio-es-invertir-en-extremadura/
+Redirect 301 /2022/04/21/plasencia-cuenta-con-un-punto-poppex-para-el-asesoramiento-emprendedor/ /noticias/plasencia-cuenta-con-un-punto-poppex-para-el-asesoramiento-emprendedor/
+Redirect 301 /2022/04/19/celia-la-creadora-de-un-bar-surfero-en-el-corazon-de-badajoz/ /noticias/celia-la-creadora-de-un-bar-surfero-en-el-corazon-de-badajoz/
+Redirect 301 /2022/04/18/tenemos-que-ofrecer-garantias-laborales/ /noticias/tenemos-que-ofrecer-garantias-laborales/
+Redirect 301 /2022/04/12/piornal-acogera-un-desayuno-para-empresarias-y-emprendedoras/ /noticias/piornal-acogera-un-desayuno-para-empresarias-y-emprendedoras/
+Redirect 301 /2022/04/05/abierta-la-seleccion-de-proyectos-para-la-incubadora-de-alta-tecnologia-en-bioeconomia-y-economia-circular-de-merida/ /noticias/abierta-la-seleccion-de-proyectos-para-la-incubadora-de-alta-tecnologia-en-bioeconomia-y-economia-circular-de-merida/
+Redirect 301 /2022/04/04/la-importancia-del-camino/ /noticias/la-importancia-del-camino/
+Redirect 301 /2022/03/31/la-startup-competize-gana-los-premios-emprendexxi-en-extremadura/ /noticias/la-startup-competize-gana-los-premios-emprendexxi-en-extremadura/
+Redirect 301 /2022/03/29/la-empresa-cacerena-que-vende-puertas-a-medio-mundo/ /noticias/la-empresa-cacerena-que-vende-puertas-a-medio-mundo/
+Redirect 301 /2022/03/28/hay-que-ser-tenaz-para-tener-exito/ /noticias/hay-que-ser-tenaz-para-tener-exito/
+Redirect 301 /2022/03/23/cristina-rico-la-emprendedora-que-volvio-a-sus-origenes-y-monto-soloutlet/ /noticias/cristina-rico-la-emprendedora-que-volvio-a-sus-origenes-y-monto-soloutlet/
+Redirect 301 /2022/03/21/la-tenacidad-es-resiliencia/ /noticias/la-tenacidad-es-resiliencia/
+Redirect 301 /2022/03/17/volver-a-los-origenes-para-poner-una-granja-de-gallinas-felices/ /noticias/volver-a-los-origenes-para-poner-una-granja-de-gallinas-felices/
+Redirect 301 /2022/03/15/javier-silva-ceo-de-sensoria-biocare-crea-un-auricular-que-detecta-problemas-auditivos/ /noticias/javier-silva-ceo-de-sensoria-biocare-crea-un-auricular-que-detecta-problemas-auditivos/
+Redirect 301 /2022/03/14/hay-que-gestionar-y-controlar-el-riesgo/ /noticias/hay-que-gestionar-y-controlar-el-riesgo/
+Redirect 301 /2022/03/10/un-empresario-peruano-en-badajoz/ /noticias/un-empresario-peruano-en-badajoz/
+Redirect 301 /2022/03/08/encuentro-de-emprendedoras-en-plasencia-y-merida/ /noticias/encuentro-de-emprendedoras-en-plasencia-y-merida/
+Redirect 301 /2022/03/07/la-investigacion-por-vocacion/ /noticias/la-investigacion-por-vocacion/
+Redirect 301 /2022/03/03/las-emprendedoras-que-posicionaron-a-la-region-en-el-mercado-de-la-kombucha/ /noticias/las-emprendedoras-que-posicionaron-a-la-region-en-el-mercado-de-la-kombucha/
+Redirect 301 /2022/02/28/la-prudencia-es-una-cualidad-imprescindible/ /noticias/la-prudencia-es-una-cualidad-imprescindible/
+Redirect 301 /2022/02/24/dos-hermanos-que-llevan-la-innovacion-al-campo/ /noticias/dos-hermanos-que-llevan-la-innovacion-al-campo/
+Redirect 301 /2022/02/22/se-buscan-emprendedores-con-proyectos-innovadores/ /noticias/se-buscan-emprendedores-con-proyectos-innovadores/
+Redirect 301 /2022/02/22/el-empresario-se-hace/ /noticias/el-empresario-se-hace/
+Redirect 301 /2022/02/17/mas-de-un-centenar-de-emprendedores-se-dan-cita-en-caceres-impulsa2/ /noticias/mas-de-un-centenar-de-emprendedores-se-dan-cita-en-caceres-impulsa2/
+Redirect 301 /2022/02/15/una-ilustradora-y-una-escritora-crean-algo-mas-que-una-libreria/ /noticias/una-ilustradora-y-una-escritora-crean-algo-mas-que-una-libreria/
+Redirect 301 /2022/02/14/la-union-hace-la-fuerza/ /noticias/la-union-hace-la-fuerza/
+Redirect 301 /2022/02/10/la-fundacion-tatiana-perez-de-guzman-el-bueno-aprueba-25-proyectos-emprendedores/ /noticias/la-fundacion-tatiana-perez-de-guzman-el-bueno-aprueba-25-proyectos-emprendedores/
+Redirect 301 /2022/02/08/el-gigante-glovo-compra-la-empresa-de-dos-emprendedores-extremenos/ /noticias/el-gigante-glovo-compra-la-empresa-de-dos-emprendedores-extremenos/
+Redirect 301 /2022/02/01/fatima-y-caridad-las-creadoras-de-una-exclusiva-fruteria-de-diseno-en-badajoz/ /noticias/fatima-y-caridad-las-creadoras-de-una-exclusiva-fruteria-de-diseno-en-badajoz/
+Redirect 301 /2022/02/01/pasion-por-la-investigacion/ /noticias/pasion-por-la-investigacion/
+Redirect 301 /2022/01/31/la-pasion-comienza-con-una-vocacion/ /noticias/la-pasion-comienza-con-una-vocacion/
+Redirect 301 /2022/01/28/el-emprendedor-de-castuera-que-disena-las-gafas-de-las-estrellas/ /noticias/el-emprendedor-de-castuera-que-disena-las-gafas-de-las-estrellas/
+Redirect 301 /2022/01/25/100-000-euros-para-la-formacion-en-tecnologia-y-el-impulso-del-negocio-digital/ /noticias/100-000-euros-para-la-formacion-en-tecnologia-y-el-impulso-del-negocio-digital/
+Redirect 301 /2022/01/18/un-joven-emprendedor-extremeno-crea-findder-un-buscador-de-regalos-online/ /noticias/un-joven-emprendedor-extremeno-crea-findder-un-buscador-de-regalos-online/
+Redirect 301 /2022/01/14/no-te-pongas-limites/ /noticias/no-te-pongas-limites/
+Redirect 301 /2022/01/09/contratos-con-el-ministerio-de-defensa-desde-badajoz/ /noticias/contratos-con-el-ministerio-de-defensa-desde-badajoz/
+Redirect 301 /2022/01/04/la-pandemia-nos-ha-dado-el-impulso-definitivo/ /noticias/la-pandemia-nos-ha-dado-el-impulso-definitivo/
+Redirect 301 /2022/01/03/joyeria-responsable-hecha-en-extremadura/ /noticias/joyeria-responsable-hecha-en-extremadura/
+Redirect 301 /2021/12/21/sobrevivir-como-empresario-en-extremadura-es-un-reto/ /noticias/sobrevivir-como-empresario-en-extremadura-es-un-reto/
+Redirect 301 /2021/12/16/el-negocio-que-llego-al-estrellato/ /noticias/el-negocio-que-llego-al-estrellato/
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|woff2|avif|webp|jpg|jpeg|png|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(xml|txt)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>

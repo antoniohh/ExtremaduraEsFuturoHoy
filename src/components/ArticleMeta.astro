@@ -1,0 +1,33 @@
+---
+import type { Article } from "../lib/schema";
+import { formatDate } from "../lib/format";
+
+interface Props {
+  article: Article;
+  showAuthor?: boolean;
+}
+
+const { article, showAuthor = true } = Astro.props;
+---
+
+<p class="label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
+  <time datetime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
+  {showAuthor && article.authorName && (
+    <>
+      <span aria-hidden="true">/</span>
+      {article.authorUrl ? (
+        <a href={article.authorUrl} class="u-link hover:text-ink" target="_blank" rel="noopener noreferrer">
+          {article.authorName}
+        </a>
+      ) : (
+        <span>{article.authorName}</span>
+      )}
+    </>
+  )}
+  {article.section && (
+    <>
+      <span aria-hidden="true">/</span>
+      <span>{article.section}</span>
+    </>
+  )}
+</p>

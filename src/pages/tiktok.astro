@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialHeader from "../components/SocialHeader.astro";
+import SocialTile from "../components/SocialTile.astro";
+import ArrowLink from "../components/ArrowLink.astro";
+import { tiktokPosts } from "../lib/data";
+import { SITE } from "../lib/site";
+---
+
+<BaseLayout
+  title="TikTok de Extremadura es Futuro HOY"
+  description="Vídeos cortos de Extremadura es Futuro HOY: entrevistas en vertical, clips de encuentros y las mejores frases del proyecto."
+>
+  <div class="mx-auto max-w-[1280px] px-5 lg:px-8">
+    <SocialHeader
+      platform="TikTok"
+      handle="@extremaduraesfuturohoy"
+      description="El proyecto en formato vertical: frases, momentos y clips de las entrevistas y encuentros."
+      href={SITE.social.tiktok}
+      accent="bg-green text-paper"
+      note={`${tiktokPosts.length} vídeos disponibles en la caché del proyecto. Para ver el resto del perfil, abre TikTok.`}
+    />
+  </div>
+
+  <section class="mx-auto max-w-[1280px] px-5 py-10 lg:px-8 lg:py-14">
+    {tiktokPosts.length > 0 ? (
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {tiktokPosts.map((post) => (
+          <SocialTile post={post} />
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-col gap-4 border-2 border-ink bg-green p-6 text-paper sm:flex-row sm:items-center sm:justify-between">
+        <p class="display text-3xl">Hay más en TikTok</p>
+        <ArrowLink href={SITE.social.tiktok} label="Abrir el perfil" external tone="paper" />
+      </div>
+    ) : (
+      <div class="grid gap-8 lg:grid-cols-12">
+        <div class="border-2 border-ink bg-green p-8 text-paper lg:col-span-7">
+          <span class="sticker">Muy pronto</span>
+          <p class="display mt-6 text-[clamp(2.8rem,6vw,5rem)]">
+            Clips verticales
+          </p>
+          <p class="serif mt-4 max-w-xl text-lg leading-snug text-paper/85">
+            Estamos preparando la selección de TikTok. Mientras tanto, puedes
+            ver los últimos vídeos en el perfil oficial.
+          </p>
+          <div class="mt-7">
+            <a
+              href={SITE.social.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="label inline-flex items-center gap-3 rounded-full bg-paper px-5 py-3 text-ink transition-colors hover:bg-lemon"
+            >
+              Abrir TikTok
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <h2 class="display text-4xl">Qué encontrarás</h2>
+          <ul class="mt-5 space-y-4">
+            <li class="border-t border-line pt-4">
+              <p class="label text-muted">Entrevistas en vertical</p>
+              <p class="serif mt-1 text-lg">Las frases que mejor resumen cada historia.</p>
+            </li>
+            <li class="border-t border-line pt-4">
+              <p class="label text-muted">Encuentros</p>
+              <p class="serif mt-1 text-lg">Momentos de las charlas y coloquios.</p>
+            </li>
+            <li class="border-t border-line pt-4">
+              <p class="label text-muted">Talento extremeño</p>
+              <p class="serif mt-1 text-lg">Personas, empresas y proyectos que están pasando.</p>
+            </li>
+          </ul>
+          <div class="mt-7">
+            <ArrowLink href={SITE.social.tiktok} label="Seguir en TikTok" external />
+          </div>
+        </div>
+      </div>
+    )}
+  </section>
+</BaseLayout>

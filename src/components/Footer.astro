@@ -1,0 +1,105 @@
+---
+import { ArrowUp } from "@lucide/astro";
+import { NAV, PARTNERS, SITE, SOCIAL_LINKS } from "../lib/site";
+---
+
+<footer class="bg-ink text-paper" data-pagefind-ignore>
+  <div class="mx-auto max-w-[1280px] px-5 py-14 lg:px-8 lg:py-20">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <a href="/" class="inline-block" aria-label={`${SITE.name} · Inicio`}>
+          <img
+            src="/logo-light.webp"
+            alt={SITE.name}
+            width="400"
+            height="118"
+            class="h-12 w-auto"
+            loading="lazy"
+          />
+        </a>
+        <p class="serif mt-6 max-w-md text-2xl leading-snug text-paper/90">
+          Historias de talento, empresa y futuro contadas desde Extremadura.
+        </p>
+        <p class="script mt-4 text-3xl text-lemon">Hecho en Extremadura.</p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="label border border-paper/30 px-3 py-2 transition-colors hover:border-lemon hover:text-lemon"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <nav class="lg:col-span-2" aria-label="Secciones">
+        <h2 class="label text-lemon">Secciones</h2>
+        <ul class="mt-4 space-y-2.5">
+          {NAV.map((item) => (
+            <li>
+              <a href={item.href} class="text-sm text-paper/80 hover:text-paper">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav class="lg:col-span-2" aria-label="Proyecto">
+        <h2 class="label text-lemon">Proyecto</h2>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="/sobre-el-proyecto/" class="text-sm text-paper/80 hover:text-paper">Sobre el proyecto</a></li>
+          <li><a href="/colaboradores/" class="text-sm text-paper/80 hover:text-paper">Colaboradores</a></li>
+          <li><a href="/contacto/" class="text-sm text-paper/80 hover:text-paper">Contacto</a></li>
+          <li><a href="/buscar/" class="text-sm text-paper/80 hover:text-paper">Buscar</a></li>
+        </ul>
+      </nav>
+
+      <nav class="lg:col-span-3" aria-label="Legal">
+        <h2 class="label text-lemon">Legal</h2>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="/aviso-legal/" class="text-sm text-paper/80 hover:text-paper">Aviso legal</a></li>
+          <li><a href="/privacidad/" class="text-sm text-paper/80 hover:text-paper">Privacidad</a></li>
+          <li><a href="/cookies/" class="text-sm text-paper/80 hover:text-paper">Cookies</a></li>
+          <li><a href="/accesibilidad/" class="text-sm text-paper/80 hover:text-paper">Accesibilidad</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 border-t border-paper/20 pt-8">
+      <p class="label text-paper/60">Con el impulso de</p>
+      <div class="mt-4 grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {PARTNERS.map((partner) => (
+          <a
+            href={partner.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex min-h-16 items-center justify-center bg-paper px-4 py-3 transition-opacity hover:opacity-80"
+          >
+            <img
+              src={partner.image}
+              alt={partner.name}
+              class="max-h-10 w-auto object-contain"
+              loading="lazy"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 border-t border-paper/20 pt-6 text-sm text-paper/60 lg:flex-row lg:items-center lg:justify-between">
+      <p>
+        © 2026 Corporación de Medios de Extremadura · Proyecto impulsado por la
+        Universidad de Extremadura y su Consejo Social.
+      </p>
+      <a href="#main" class="label u-link inline-flex items-center gap-2 text-paper/80 hover:text-lemon">
+        Volver arriba
+        <ArrowUp size={14} stroke-width={2} aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</footer>
